@@ -1,0 +1,86 @@
+version: "3"
+services:
+  # postgres:
+  #   image: postgres:13
+  #   restart: always
+  #   environment:
+  #     POSTGRES_DB: apr_dev_db
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: aprpostgres
+
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: apr.marathon.21@gmail.com
+  #     PGADMIN_DEFAULT_PASSWORD: pgadminbwt
+  #   ports:
+  #     - "5050:80"
+  #   depends_on:
+  #     - postgres
+
+  # jenkins:
+  #   image: jenkins/jenkins:lts
+  #   restart: always
+  #   ports:
+  #     - "8080:8080"
+  #   volumes:
+  #     - jenkins_data:/var/jenkins_home
+
+  stagingaprsignupandsignin:
+    build:
+      context: ./SignupandSignin
+    container_name: stagingaprsignupandsignin
+    restart: always
+    ports:
+      - "4001:4001"
+    #  environment:
+    # - MONGODB_URI=mongodb+srv://laksh:blackwinsreconattendplus@cluster0.3d4mfoc.mongodb.net/?retryWrites=true&w=majority
+    # depends_on:
+    #   - mongodb
+
+  stagingaprregisterticket:
+    build:
+      context: ./Register-Ticket
+    container_name: stagingaprregisterticket
+    restart: always
+    ports:
+      - "4002:4002"
+    #  environment:
+    # - MONGODB_URI=mongodb+srv://laksh:blackwinsreconattendplus@cluster0.3d4mfoc.mongodb.net/?retryWrites=true&w=majority
+    # depends_on:
+    #   - mongodb
+
+  stagingapradminportal:
+    build:
+      context: ./Admin-Portal
+    container_name: stagingapradminportal
+    restart: always
+    ports:
+      - "4003:4003"
+      #  environment:
+      # - MONGODB_URI=mongodb+srv://laksh:blackwinsreconattendplus@cluster0.3d4mfoc.mongodb.net/?retryWrites=true&w=majority
+      # depends_on:
+      #   - mongodb
+
+  nginx:
+    build:
+      context: ./nginx
+    ports:
+      - "50:70"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - stagingaprsignupandsignin
+      - stagingaprregisterticket
+      - stagingapradminportal
+# volumes:
+# postgres_data:
+# jenkins_data:
+
+# networks:
+#   backend_network:
+#     driver: bridge

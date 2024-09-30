@@ -1,0 +1,33 @@
+{
+  "name": "admin-portal",
+  "version": "1.0.0",
+  "description": "apr-marathon admin portal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "BWT team",
+  "license": "ISC",
+  "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
+    "admin-portal": "file:",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "cryptr": "^6.3.0",
+    "csv": "^6.3.5",
+    "csv-writer": "^1.6.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "firebase-admin": "^11.11.0",
+    "fs": "^0.0.1-security",
+    "json2csv": "^6.0.0-alpha.2",
+    "jsonwebtoken": "^9.0.2",
+    "node-cron": "^3.0.2",
+    "nodemailer": "^6.9.7",
+    "nodemon": "^3.0.1",
+    "pdfkit": "^0.14.0",
+    "pg": "^8.11.3",
+    "sequelize": "^6.33.0",
+    "unirest": "^0.6.0"
+  }
+}
